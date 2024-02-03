@@ -66,12 +66,13 @@ def index():
                                             <option value="100">100</option>
                                             <option value="200">200</option>
                                             <option value="500">500</option>
+                                            <option value="800">800</option>
                                             <option value="1_000">1000</option>
-                                            <option value="1_500">1500</option>
-                                            <option value="2_000">2000</option>
+                                            <option value="1_100">1100</option>
                                         </select>
                                         <label for="temperatura">Temperatura:</label>
-                                        <input type="number" name="temperatura" id="temperatura" step="1" min="1" max="100" required>
+                                        <p>El rango valido de temperatura es de 15-40 grados.</p>
+                                        <input type="number" name="temperatura" id="temperatura" step="1" min="15" max="40" required>
                                         <button type="submit">Buscar</button>
                                     </form>
                                 ''')
@@ -79,7 +80,7 @@ def index():
 # Ruta para realizar la búsqueda
 @app.route('/buscar', methods=['POST'])
 def buscar():
-    
+
     irradiancia = int(request.form['irradiancia'])
     temperatura = int(request.form['temperatura'])
     conn = get_db_connection()
@@ -90,9 +91,10 @@ def buscar():
         conn.close()
         resultados_dict = {'Irradiancia': irradiancia,'Temperatura': temperatura,'Vmp': resultados[3], 'Imp': resultados[4], 'Pmax': resultados[5]}
     except:
+        print('hereeeee')
         pv = PVModel(4,3)
         # Calcular el modelo PV
-        resultados, Vmpp, Impp, P_max = pv.modelo_pv(G=irradiancia, T=temperatura)
+        resultados, Vmpp, Impp, P_max = pv.modelo_pv(G=irradiancia, T=273+temperatura)
         resultados_dict = {'Irradiancia': irradiancia,'Temperatura': temperatura,'Vmp': round(Vmpp,2), 'Imp': round(Impp,2), 'Pmax': round(P_max,2)}
         
         conn = sqlite3.connect("pv_system.db")

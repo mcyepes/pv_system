@@ -78,14 +78,3 @@ class PVModel:
         Impp = resultados.loc[max_power_idx, 'Corriente (A)']
         P_max = resultados.loc[max_power_idx, 'Potencia (W)']
         return resultados, Vmpp, Impp, P_max
-
-def main():
-    # Crear un objeto de la clase PVModel
-    pv = PVModel(4,3)
-    # Calcular el modelo PV
-    resultados, Vmpp, Impp, P_max = pv.modelo_pv(G=1000, T=273+25)
-    print(resultados.head())
-    print(f"Vmp = {Vmpp:.2f} V, Imp = {Impp:.2f} A, Pmax = {P_max:.2f} W")
-
-if __name__ == "__main__":
-    main()

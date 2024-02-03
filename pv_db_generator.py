@@ -83,8 +83,8 @@ class PVModel:
 def main():
     # Crear un objeto de la clase PVModel
     pv = PVModel(4,3)
-    G_range = [100]#,200,500,1000,1500,2000]
-    T_range = range(1,100)
+    G_range = [100,200,500,800,1000,1100]
+    T_range = range(15,41)
     pv_system = []
     print('Calculations Starting')
     for G_input in G_range:
