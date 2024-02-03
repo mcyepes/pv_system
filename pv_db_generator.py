@@ -49,6 +49,7 @@ class PVModel:
         :param T:  Temperatura (K)
         :return:  DataFrame con los resultados, voltaje, corriente y potencia máximos
         """
+        T = 273+T
         # Validar los valores de irradiancia y temperatura
         self.validate_inputs(G, T)
         # Cálculo de I_rs: corriente de saturación inversa
