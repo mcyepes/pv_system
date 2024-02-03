@@ -18,5 +18,8 @@ Para utilizar este proyecto:
 2. Acceda a la URL generada.
 3. Elija los niveles deseados de irradiancia y temperatura dentro de los rangos definidos.
 
+# Comentarios:
+Validar que el puerto 5050 se encuentre disponible, o modificar el puerto en `main.py` linea 184.
+
 # Integrantes:
 Maria Camila Yepes Castrillón
